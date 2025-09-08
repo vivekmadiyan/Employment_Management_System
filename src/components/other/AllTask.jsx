@@ -1,35 +1,70 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../../context/AuthProvider'
+import React, { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider'; // Make sure this path is correct
 
 const AllTask = () => {
+  // CORRECTED: Destructure the context value as an object {}
+  const { userData } = useContext(AuthContext);
 
-   const [userData,setUserData] =  useContext(AuthContext)
+  // If userData hasn't loaded yet from the provider, show a loading message
+  if (!userData || userData.length === 0) {
+    return (
+        <div className="overflow-hidden rounded-xl border border-neutral-300 bg-white p-6 text-center text-neutral-400 shadow-sm">
+            Loading employee data or no data available...
+        </div>
+    );
+  }
 
-   
   return (
-    <div className='bg-[#1c1c1c] p-5 rounded mt-5'>
-        <div className='bg-red-400 mb-2 py-2 px-4 flex justify-between rounded'>
-            <h2 className='text-lg font-medium w-1/5'>Employee Name</h2>
-            <h3 className='text-lg font-medium w-1/5'>New Task</h3>
-            <h5 className='text-lg font-medium w-1/5'>Active Task</h5>
-            <h5 className='text-lg font-medium w-1/5'>Completed</h5>
-            <h5 className='text-lg font-medium w-1/5'>Failed</h5>
-        </div>
-        <div className=''>
-        {userData.map(function(elem,idx){
-            return <div key={idx} className='border-2 border-emerald-500 mb-2 py-2 px-4 flex justify-between rounded'>
-            <h2 className='text-lg font-medium  w-1/5'>{elem.firstName}</h2>
-            <h3 className='text-lg font-medium w-1/5 text-blue-400'>{elem.taskCounts.newTask}</h3>
-            <h5 className='text-lg font-medium w-1/5 text-yellow-400'>{elem.taskCounts.active}</h5>
-            <h5 className='text-lg font-medium w-1/5 text-white'>{elem.taskCounts.completed}</h5>
-            <h5 className='text-lg font-medium w-1/5 text-red-600'>{elem.taskCounts.failed}</h5>
-        </div>
-        })}
-        </div>
-        
-        
+    <div className="overflow-hidden rounded-xl border border-neutral-300 bg-white shadow-sm">
+      <div className="p-6">
+        <h2 className="text-lg font-bold text-neutral-500">Employee Task Summary</h2>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-neutral-300">
+          <thead className="bg-neutral-200">
+            <tr>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-neutral-400">
+                Employee Name
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-neutral-400">
+                New Task
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-neutral-400">
+                Active Task
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-neutral-400">
+                Completed
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-neutral-400">
+                Failed
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-neutral-300 bg-white">
+            {userData.map((elem, idx) => (
+              <tr key={idx}>
+                <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-neutral-500">
+                  {elem.firstName}
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 text-sm font-semibold text-blue-600">
+                  {elem.taskCounts.newTask}
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 text-sm font-semibold text-yellow-600">
+                  {elem.taskCounts.active}
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 text-sm font-semibold text-emerald-600">
+                  {elem.taskCounts.completed}
+                </td>
+                <td className="whitespace-nowrap px-6 py-4 text-sm font-semibold text-danger">
+                  {elem.taskCounts.failed}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default AllTask
+export default AllTask;

@@ -1,18 +1,15 @@
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
-  color: #fff;
-}
-body{
-  background-color: #111;
-}
-#tasklist::-webkit-scrollbar{
-    background-color: transparent;
-    height: 5px;
-}
-#tasklist::-webkit-scrollbar-thumb{
-  background-color: rgb(143, 143, 143);
-  border-radius: 50px;
+@layer base {
+  body {
+    /* Set default background and text colors */
+    @apply bg-neutral-100 text-neutral-500;
+
+    /* Enable font smoothing for a cleaner look */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }

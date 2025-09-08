@@ -1,27 +1,25 @@
-import React from 'react'
+import React from 'react';
 
-const TaskListNumbers = ({data}) => {
+const StatCard = ({ title, value, colorClass }) => (
+  <div className="rounded-xl border border-neutral-300 bg-white p-6 shadow-sm">
+    <p className="text-sm font-medium text-neutral-400">{title}</p>
+    <p className={`mt-2 text-4xl font-bold ${colorClass || 'text-neutral-500'}`}>
+      {value}
+    </p>
+  </div>
+);
+
+const TaskListNumbers = ({ data }) => {
+  if (!data || !data.taskCounts) return null;
+
   return (
-    <div className='flex mt-10 justify-between gap-5 screen'>
-        
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-blue-400'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.newTask}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>New Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-green-400'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.completed}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>Completed Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-yellow-400 '>
-            <h2 className='text-3xl text-black font-bold'>{data.taskCounts.active}</h2>
-            <h3 className='text-xl mt-0.5 text-black font-medium'>Accepted Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-red-400'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.failed}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>Failed Task</h3>
-        </div>
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <StatCard title="New Task" value={data.taskCounts.newTask} colorClass="text-blue-600" />
+      <StatCard title="Accepted Task" value={data.taskCounts.active} colorClass="text-primary" />
+      <StatCard title="Completed Task" value={data.taskCounts.completed} colorClass="text-emerald-600" />
+      <StatCard title="Failed Task" value={data.taskCounts.failed} colorClass="text-danger" />
     </div>
-  )
-}
+  );
+};
 
-export default TaskListNumbers
+export default TaskListNumbers;
