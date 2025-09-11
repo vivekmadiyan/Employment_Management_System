@@ -1,89 +1,101 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Login = ({ handleLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
     handleLogin(email, password);
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
   };
 
   return (
-    // 1. Main background is a light gray to make the card pop
-    <div className='flex min-h-screen w-screen items-center justify-center bg-gray-50'>
-      <div className='w-full max-w-md'>
-        {/* Optional: Add your SaaS logo here */}
-        <div className='text-center'>
-            <h2 className='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>
-                Sign in to your account
-            </h2>
+    <div className="flex min-h-screen w-screen items-center justify-center bg-gray-50">
+      <div className="w-full max-w-md">
+        <div className="text-center">
+          <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
+            Sign in to your account
+          </h2>
         </div>
 
-        {/* 2. Switched from a harsh border to a clean white card with a soft shadow */}
-        <div className='mt-8 rounded-2xl bg-white p-8 shadow-lg'>
-          {/* 3. Using space-y for consistent vertical spacing between form elements */}
-          <form onSubmit={submitHandler} className='space-y-6'>
+        {/* Demo Credentials Section */}
+        <div className="mt-6 rounded-xl bg-gray-100 p-4 text-sm text-gray-700 shadow">
+          <p className="font-semibold mb-2">🔑 Demo Login Credentials:</p>
+          <p>
+            <span className="font-medium">Admin:</span> admin@example.com / 123
+          </p>
+          <p>
+            <span className="font-medium">Employee 1:</span> e@e.com / 123
+          </p>
+          <p>
+            <span className="font-medium">Employee 2:</span>{" "}
+            employee2@example.com / 123
+          </p>
+          <p>
+            <span className="font-medium">Employee 3:</span>{" "}
+            employee3@example.com / 123
+          </p>
+          <p>
+            <span className="font-medium">Employee 4:</span>{" "}
+            employee4@example.com / 123
+          </p>
+          <p>
+            <span className="font-medium">Employee 5:</span>{" "}
+            employee5@example.com / 123
+          </p>
+        </div>
+
+        {/* Login Form */}
+        <div className="mt-8 rounded-2xl bg-white p-8 shadow-lg">
+          <form onSubmit={submitHandler} className="space-y-6">
             <div>
-              {/* 4. Added accessible labels for better UX */}
-              <label htmlFor='email' className='block text-sm font-medium text-gray-700'>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email address
               </label>
-              <div className='mt-1'>
-                <input
-                  id='email'
-                  name='email'
-                  type='email'
-                  autoComplete='email'
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  // 5. Modern input styling with focus states
-                  className='block w-full appearance-none rounded-lg border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
-                  placeholder='you@example.com'
-                />
-              </div>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="you@example.com"
+              />
             </div>
 
             <div>
-              <label htmlFor='password' className='block text-sm font-medium text-gray-700'>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
-              <div className='mt-1'>
-                <input
-                  id='password'
-                  name='password'
-                  type='password'
-                  autoComplete='current-password'
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className='block w-full appearance-none rounded-lg border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
-                  placeholder='••••••••'
-                />
-              </div>
-            </div>
-            
-            {/* Optional: Add a "Forgot Password?" link */}
-            <div className="flex items-center justify-end">
-              <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Forgot your password?
-                </a>
-              </div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="••••••••"
+              />
             </div>
 
-            <div>
-              {/* 6. Primary button using our accent color */}
-              <button
-                type='submit'
-                className='flex w-full justify-center rounded-lg border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-              >
-                Log in
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-lg bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500"
+            >
+              Log in
+            </button>
           </form>
         </div>
       </div>
