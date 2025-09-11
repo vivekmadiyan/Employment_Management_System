@@ -24,7 +24,7 @@ const Login = ({ handleLogin }) => {
         <div className="mt-6 rounded-xl bg-gray-100 p-4 text-sm text-gray-700 shadow">
           <p className="font-semibold mb-2">🔑 Demo Login Credentials:</p>
           <p>
-            <span className="font-medium">Admin:</span> admin@example.com / 123
+            <span className="font-medium">Admin:</span> admin@me.com / 123
           </p>
           <p>
             <span className="font-medium">Employee 1:</span> e@e.com / 123
@@ -104,3 +104,4 @@ const Login = ({ handleLogin }) => {
 };
 
 export default Login;
+
